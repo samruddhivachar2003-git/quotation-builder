@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoPickle Quotation Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="navlogo border">Photography</div>
+            <div class="navtitle">Quotation Builder</div>
+            <div class="navprint border" onclick="window.print()">
+                <i class="fa-solid fa-print"></i>
+                Print
+            </div>
+        </div>
+        <div class="panel">
+            <div class="ptext">Pick a template, fill the details and print your quotation</div>
+        </div>
+    </header>
+
+    <div class="main">
+
+        <!--form-->
+        <div class="left" oninput="update()">
+            <h3>1. Choose template</h3>
+            <div class="tempbox" id="tempbox"></div>
+
+            <h3>2. Your details</h3>
+            <input class="inp" id="in_fromName" placeholder="Your name">
+            <input class="inp" id="in_fromEmail" placeholder="Your email">
+            <input class="inp" id="in_fromPhone" placeholder="Your phone">
+
+            <h3>3. Client details</h3>
+            <input class="inp" id="in_clientName" placeholder="Client name">
+            <input class="inp" id="in_clientEmail" placeholder="Client email">
+            <input class="inp" id="in_eventName" placeholder="Event name">
+            <input class="inp" id="in_eventDate" type="date">
+            <input class="inp" id="in_venue" placeholder="Venue">
+
+            <h3>4. Quotation info</h3>
+            <input class="inp" id="in_number" placeholder="Quotation number">
+            <p class="lab">Quotation date</p>
+            <input class="inp" id="in_date" type="date">
+            <p class="lab">Valid till</p>
+            <input class="inp" id="in_validTill" type="date">
+            <select class="inp" id="in_currency">
+                <option value="" selected>Select the currency</option>
+                <option value="₹">₹ - Indian Rupee (INR)</option>
+                <option value="$">$ - US Dollar (USD)</option>
+                <option value="€">€ - Euro (EUR)</option>
+                <option value="£">£ - British Pound (GBP)</option>
+                <option value="¥">¥ - Japanese Yen (JPY)</option>
+            </select>
+
+            <h3>5. Items</h3>
+            <div id="itemlist"></div>
+            <div class="additem border" onclick="addItem()">
+                <i class="fa-solid fa-plus"></i>
+                Add item
+            </div>
+
+            <h3>6. Discount, notes and terms</h3>
+            <input class="inp" id="in_discount" type="number" placeholder="Applicable discount">
+            <textarea class="inp" id="in_notes" placeholder="Notes"></textarea>
+            <textarea class="inp" id="in_terms" placeholder="Terms & conditions"></textarea>
+        </div>
+
+        <!--preview-->
+        <div class="right">
+            <div class="qhead">
+                <h1>Quotation</h1>
+                <div class="qinfo">
+                    <p>Quotation no: <span id="out_number"></span></p>
+                    <p>Date: <span id="out_date"></span></p>
+                    <p>Valid till: <span id="out_validTill"></span></p>
+                </div>
+            </div>
+
+            <div class="qparty">
+                <div class="qfrom">
+                    <h4>From</h4>
+                    <p id="out_fromName"></p>
+                    <p id="out_fromEmail"></p>
+                    <p id="out_fromPhone"></p>
+                </div>
+                <div class="qto">
+                    <h4>Prepared for</h4>
+                    <p id="out_clientName"></p>
+                    <p id="out_clientEmail"></p>
+                </div>
+            </div>
+
+            <div class="qevent">
+                <p>Event: <span id="out_eventName"></span></p>
+                <p>Date: <span id="out_eventDate"></span></p>
+                <p>Venue: <span id="out_venue"></span></p>
+            </div>
+
+            <table class="qtable">
+                <thead>
+                    <tr>
+                        <th class="itemcol">Item</th>
+                        <th>Qty</th>
+                        <th>Unit price</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+
+            <div class="qsum">
+                <div class="sumrow">
+                    <p>Items total</p>
+                    <p id="itemsTotal"></p>
+                </div>
+                <div class="sumrow">
+                    <p>Discount</p>
+                    <p id="discountOut"></p>
+                </div>
+                <div class="sumrow">
+                    <p>Rounding</p>
+                    <p id="rounding"></p>
+                </div>
+                <div class="sumrow grand">
+                    <p>Grand total</p>
+                    <p id="grandTotal"></p>
+                </div>
+            </div>
+
+            <div class="qnotes" id="notesbox">
+                <h4>Notes</h4>
+                <p id="out_notes"></p>
+            </div>
+
+            <div class="qnotes" id="termsbox">
+                <h4>Terms & conditions</h4>
+                <p id="out_terms"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="foot">
+            Made with <i class="fa-solid fa-heart heart"></i> 
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
